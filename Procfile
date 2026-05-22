@@ -1,1 +1,1 @@
-web: gunicorn sauti_ya_mwananchi.wsgi:application --log-file -
+web: gunicorn sauti_ya_mwananchi.wsgi:application --bind 0.0.0.0:$PORT --log-file -
