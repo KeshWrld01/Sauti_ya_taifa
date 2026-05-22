@@ -1,1 +1,1 @@
-web: gunicorn sauti_ya_taifa.wsgi --log-file -
+web: gunicorn sauti_ya_taifa.wsgi:application --log-file -
