@@ -1,1 +1,1 @@
-web: gunicorn sauti_ya_mwananchi.wsgi:application --bind 0.0.0.0:$PORT --log-file -
+web: python manage.py migrate && python manage.py collectstatic --noinput && gunicorn sauti_ya_mwananchi.wsgi:application --bind 0.0.0.0:$PORT --log-file -
