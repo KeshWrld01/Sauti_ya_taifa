@@ -135,3 +135,6 @@ MPESA_CONSUMER_SECRET = 'OKvGLRSQKsAtqb1qbBivsmlhFWA4vEbX3pQL3F3AJoeUhkU6stx0lGS
 MPESA_EXPRESS_SHORTCODE = '174379'
 MPESA_SHORTCODE_TYPE = 'paybill'
 MPESA_PASSKEY = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'
+CSRF_TRUSTED_ORIGINS = [
+    'https://sautiyataifa-production.up.railway.app',
+]
