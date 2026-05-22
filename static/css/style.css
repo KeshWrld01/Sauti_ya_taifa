@@ -698,7 +698,6 @@ body { font-family: var(--font-body); color: var(--text); background: var(--whit
   text-align: center;
   border-bottom: 4px solid var(--red);
   position: relative;
-  height: 70vh;
 }
 
 .saynames-hero::before {
