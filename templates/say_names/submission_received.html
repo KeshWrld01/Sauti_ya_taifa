@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Submission Received — Sauti Ya Taifa{% endblock %}
+
+{% block content %}
+<section class="section" style="min-height: 60vh; display:flex; align-items:center; justify-content:center; text-align:center;">
+  <div>
+    <div style="font-size:4rem; margin-bottom:1rem;">🕯️</div>
+    <h1 class="section-title">Submission <span class="accent-green">Received</span></h1>
+    <p style="color:#666; max-width:500px; margin: 0 auto 2rem; line-height:1.8;">
+      Thank you for saying their name. Your submission is under review and will appear on the memorial wall once verified. We take this responsibility seriously.
+    </p>
+    <a href="{% url 'say_names' %}" class="btn btn-red">Back to the Wall</a>
+  </div>
+</section>
+{% endblock %}

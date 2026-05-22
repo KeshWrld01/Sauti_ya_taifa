@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Say Their Names — Sauti Ya Taifa{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="saynames-hero">
+  <div class="saynames-hero-content">
+    <div class="hero-flag-accent">
+      <span class="flag-dot black"></span>
+      <span class="flag-dot red"></span>
+      <span class="flag-dot green"></span>
+    </div>
+    <h1>Say Their <span class="accent-red">Names</span></h1>
+    <p>They came out for a better Kenya. They were met with brutality. We will not forget them. Say their names — let history record every single one.</p>
+    <a href="#submit-form" class="btn btn-red">Add a Name</a>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="names-stats-bar">
+  <div class="names-stat">
+    <strong>{{ victims.count }}</strong>
+    <span>Names Recorded</span>
+  </div>
+  <div class="names-stat">
+    <strong>{{ victims|length }}</strong>
+    <span>Stories Told</span>
+  </div>
+  <div class="names-stat">
+    <strong>Never</strong>
+    <span>Forgotten</span>
+  </div>
+</div>
+
+<!-- MEMORIAL WALL -->
+<section class="section memorial-section">
+  <div class="section-container">
+    <h2 class="section-title">The <span class="accent-red">Memorial Wall</span></h2>
+    <p class="section-subtitle">Every card is a life. Every name is a story. Every story demands justice.</p>
+
+    {% if victims %}
+    <div class="memorial-grid">
+      {% for victim in victims %}
+      <div class="memorial-card">
+
+        <!-- Photo -->
+        <div class="memorial-photo">
+          {% if victim.photo %}
+            <img src="{{ victim.photo.url }}" alt="{{ victim.name }}" />
+          {% else %}
+            <div class="memorial-photo-placeholder">
+              <span>{{ victim.name|first }}</span>
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Status Badge -->
+        <div class="memorial-badge badge-{{ victim.status }}">
+          {% if victim.status == 'killed' %}⚰ Killed
+          {% elif victim.status == 'jailed' %}🔒 Jailed
+          {% elif victim.status == 'injured' %}🩹 Injured
+          {% elif victim.status == 'missing' %}❓ Missing
+          {% endif %}
+        </div>
+
+        <!-- Info -->
+        <div class="memorial-info">
+          <h3>{{ victim.name }}</h3>
+          <div class="memorial-meta">
+            {% if victim.age %}<span>Age {{ victim.age }}</span>{% endif %}
+            {% if victim.county %}<span>{{ victim.county }}</span>{% endif %}
+            {% if victim.date_of_incident %}<span>{{ victim.date_of_incident }}</span>{% endif %}
+          </div>
+          <p class="memorial-story">{{ victim.how_it_happened }}</p>
+          {% if victim.additional_info %}
+          <p class="memorial-extra">{{ victim.additional_info }}</p>
+          {% endif %}
+        </div>
+
+        <!-- Candle -->
+        <div class="memorial-candle">🕯️ Rest in Power</div>
+
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-wall">
+      <p>No names have been added yet. Be the first to say their name.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- SUBMIT FORM -->
+<section class="section submit-section" id="submit-form">
+  <div class="section-container">
+    <div class="submit-wrapper">
+      <div class="submit-header">
+        <h2>Add a <span class="accent-red">Name</span></h2>
+        <p>Help us document every person affected. Fill in as much as you know.</p>
+      </div>
+
+      <form method="POST" enctype="multipart/form-data" class="names-form">
+        {% csrf_token %}
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name <span class="required">*</span></label>
+            <input type="text" name="name" placeholder="e.g. Brian Chira" required />
+          </div>
+          <div class="form-group">
+            <label>Age</label>
+            <input type="number" name="age" placeholder="e.g. 23" min="1" max="120" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>County</label>
+            <select name="county">
+              <option value="">-- Select County --</option>
+              <option>Nairobi</option><option>Mombasa</option><option>Kisumu</option>
+              <option>Nakuru</option><option>Eldoret</option><option>Kiambu</option>
+              <option>Machakos</option><option>Meru</option><option>Nyeri</option>
+              <option>Kakamega</option><option>Kisii</option><option>Kilifi</option>
+              <option>Garissa</option><option>Turkana</option><option>Bungoma</option>
+              <option>Siaya</option><option>Migori</option><option>Homa Bay</option>
+              <option>Bomet</option><option>Kericho</option><option>Nandi</option>
+              <option>Trans Nzoia</option><option>West Pokot</option><option>Samburu</option>
+              <option>Laikipia</option><option>Nyandarua</option><option>Muranga</option>
+              <option>Kirinyaga</option><option>Embu</option><option>Tharaka Nithi</option>
+              <option>Isiolo</option><option>Marsabit</option><option>Mandera</option>
+              <option>Wajir</option><option>Kwale</option><option>Taita Taveta</option>
+              <option>Tana River</option><option>Lamu</option><option>Makueni</option>
+              <option>Kajiado</option><option>Narok</option><option>Baringo</option>
+              <option>Elgeyo Marakwet</option><option>Uasin Gishu</option>
+              <option>Vihiga</option><option>Busia</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Status <span class="required">*</span></label>
+            <select name="status" required>
+              <option value="">-- What happened? --</option>
+              <option value="killed">Killed</option>
+              <option value="jailed">Jailed</option>
+              <option value="injured">Injured</option>
+              <option value="missing">Missing</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Date of Incident</label>
+            <input type="date" name="date_of_incident" />
+          </div>
+          <div class="form-group">
+            <label>Photo</label>
+            <input type="file" name="photo" accept="image/*" class="file-input" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>What Happened <span class="required">*</span></label>
+          <textarea name="how_it_happened" rows="4" placeholder="Describe what happened to this person..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Additional Information</label>
+          <textarea name="additional_info" rows="3" placeholder="Any other details — family left behind, last known location, witness accounts..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-red submit-btn">
+          🕯️ Add Their Name to the Wall
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

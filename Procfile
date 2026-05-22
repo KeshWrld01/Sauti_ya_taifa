@@ -1,0 +1,1 @@
+web: gunicorn sauti_ya_taifa.wsgi --log-file -

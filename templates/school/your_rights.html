@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Your Rights — Sauti School{% endblock %}
+
+{% block content %}
+
+<section class="lesson-hero red-lesson-hero">
+  <div class="lesson-hero-content">
+    <a href="{% url 'school' %}" class="back-link">← Back to Sauti School</a>
+    <span class="course-tag tag-red">Rights & Law</span>
+    <h1>Your <span class="accent-red">Rights</span></h1>
+    <p>Every Kenyan has rights. Know them. Use them. Protect them.</p>
+  </div>
+</section>
+
+<section class="section lesson-section">
+  <div class="lesson-container">
+
+    <div class="lesson-block">
+      <h2>⚖️ Rights During Arrest</h2>
+      <p>When police arrest you, the law is on your side — but only if you know it. Here is exactly what the Constitution of Kenya 2010 guarantees you:</p>
+      <div class="rights-grid">
+        <div class="right-card">
+          <h4>Right to be Informed</h4>
+          <p>You must be told the reason for your arrest immediately, in a language you understand. (Article 49(1)(a))</p>
+        </div>
+        <div class="right-card">
+          <h4>Right to Remain Silent</h4>
+          <p>You have the right to remain silent. Anything you say can be used against you. You do not have to answer questions without a lawyer. (Article 49(1)(d))</p>
+        </div>
+        <div class="right-card">
+          <h4>Right to a Lawyer</h4>
+          <p>You have the right to communicate with an advocate of your choice. If you cannot afford one, the state must provide one in serious cases. (Article 49(1)(c))</p>
+        </div>
+        <div class="right-card">
+          <h4>Right Not to Be Tortured</h4>
+          <p>No one may subject you to any form of violence, torture, or cruel treatment. This is absolute — no exceptions. (Article 29(f))</p>
+        </div>
+        <div class="right-card">
+          <h4>Right to Be Brought to Court</h4>
+          <p>You must be brought before a court within 24 hours of arrest. If arrested on a holiday or weekend, the next working day. (Article 49(1)(f))</p>
+        </div>
+        <div class="right-card">
+          <h4>Right to Bail</h4>
+          <p>You have the right to apply for bail or bond. A court can only deny bail in exceptional circumstances. (Article 49(1)(h))</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="lesson-block">
+      <h2>✊ Rights During Protest</h2>
+      <p>Peaceful protest is a constitutional right in Kenya. Article 37 of the Constitution states clearly:</p>
+      <blockquote class="lesson-quote">
+        "Every person has the right, peaceably and unarmed, to assemble, to demonstrate, to picket, and to present petitions to public authorities."
+        <cite>— Constitution of Kenya 2010, Article 37</cite>
+      </blockquote>
+      <div class="rights-grid">
+        <div class="right-card">
+          <h4>You Can Protest Without a Permit</h4>
+          <p>The law does not require protesters to obtain a permit. Police cannot arrest you simply for protesting peacefully.</p>
+        </div>
+        <div class="right-card">
+          <h4>Police Cannot Use Excessive Force</h4>
+          <p>Police are only allowed to use force proportional to the threat. Shooting live bullets at unarmed protesters is illegal and unconstitutional.</p>
+        </div>
+        <div class="right-card">
+          <h4>Right to Film & Document</h4>
+          <p>You have the right to film police and public officials in public spaces. They cannot legally take your phone or demand you delete footage.</p>
+        </div>
+        <div class="right-card">
+          <h4>Right to Medical Attention</h4>
+          <p>If you are injured during a protest, you have the right to immediate medical attention. Police cannot block access to emergency care.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="lesson-block">
+      <h2>🚫 What Police CANNOT Do</h2>
+      <ul class="cannot-list">
+        <li>❌ Arrest you without telling you why</li>
+        <li>❌ Hold you for more than 24 hours without taking you to court</li>
+        <li>❌ Deny you access to a lawyer</li>
+        <li>❌ Torture or assault you in custody</li>
+        <li>❌ Search your home without a warrant (except in limited circumstances)</li>
+        <li>❌ Take your phone or belongings without a proper legal process</li>
+        <li>❌ Shoot at unarmed, peaceful protesters</li>
+        <li>❌ Threaten or intimidate you into confessing</li>
+      </ul>
+    </div>
+
+    <div class="lesson-block">
+      <h2>📞 Where to Get Help</h2>
+      <div class="rights-grid">
+        <div class="right-card">
+          <h4>Kenya National Commission on Human Rights</h4>
+          <p>KNCHR investigates human rights violations. Call: <strong>0800 720 627</strong> (Toll free)</p>
+        </div>
+        <div class="right-card">
+          <h4>Independent Policing Oversight Authority</h4>
+          <p>IPOA handles complaints against police misconduct. Call: <strong>0800 722 203</strong> (Toll free)</p>
+        </div>
+        <div class="right-card">
+          <h4>Legal Aid Kenya</h4>
+          <p>Free legal advice and representation for those who cannot afford a lawyer. Visit: <strong>legalaidkenya.org</strong></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

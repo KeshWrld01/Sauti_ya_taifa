@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Sauti School — Learn, Know, Rise{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="school-hero">
+  <div class="school-hero-content">
+    <div class="hero-flag-accent">
+      <span class="flag-dot black"></span>
+      <span class="flag-dot red"></span>
+      <span class="flag-dot green"></span>
+    </div>
+    <h1>Sauti <span class="accent-green">School</span></h1>
+    <p>Knowledge is the first act of resistance. Learn your rights, understand your constitution, and draw strength from the philosophers of change.</p>
+    <a href="#courses" class="btn btn-green">Start Learning</a>
+  </div>
+</section>
+
+<!-- COURSES SECTION -->
+<section class="section" id="courses">
+  <div class="section-container">
+    <h2 class="section-title">Our <span class="accent-red">Courses</span></h2>
+    <p class="section-subtitle">Three pillars of civic knowledge every Kenyan must have.</p>
+
+    <div class="courses-grid">
+
+      <!-- Course 1 -->
+      <div class="course-card card">
+        <div class="course-top red-top"></div>
+        <div class="course-body">
+          <div class="course-icon">⚖️</div>
+          <span class="course-tag tag-red">Rights & Law</span>
+          <h3>Your Rights</h3>
+          <p>What happens when you're arrested? What can police legally do? What are your rights during a protest? Know this before you need it.</p>
+          <ul class="course-topics">
+            <li>✔ Rights during arrest</li>
+            <li>✔ Rights during protest</li>
+            <li>✔ What police can & cannot do</li>
+            <li>✔ How to seek legal help</li>
+          </ul>
+          <a href="{% url 'your_rights' %}" class="btn btn-green">Start Lesson</a>
+        </div>
+      </div>
+
+      <!-- Course 2 -->
+      <div class="course-card card">
+        <div class="course-top green-top"></div>
+        <div class="course-body">
+          <div class="course-icon">📜</div>
+          <span class="course-tag tag-green">Constitutional Law</span>
+          <h3>Constitution 101</h3>
+          <p>The constitution is your shield and your sword. Learn what it says, what it promises every Kenyan, and how to use it.</p>
+          <ul class="course-topics">
+            <li>✔ The Bill of Rights</li>
+            <li>✔ Government structure</li>
+            <li>✔ Devolution explained</li>
+            <li>✔ How to hold leaders accountable</li>
+          </ul>
+          <a href="{% url 'constitution' %}" class="btn btn-green">Start Lesson</a>
+        </div>
+      </div>
+
+      <!-- Course 3 -->
+      <div class="course-card card">
+        <div class="course-top red-top"></div>
+        <div class="course-body">
+          <div class="course-icon">🧠</div>
+          <span class="course-tag tag-red">Philosophy</span>
+          <h3>Philosophy of Resistance</h3>
+          <p>From Stoicism to Confucius, from Fanon to Wangari Maathai — the wisdom of ages applied to the struggles of today.</p>
+          <ul class="course-topics">
+            <li>✔ Stoicism & mental strength</li>
+            <li>✔ Confucius on justice</li>
+            <li>✔ Fanon & decolonization</li>
+            <li>✔ African philosophy of ubuntu</li>
+          </ul>
+          <a href="{% url 'philosophy' %}" class="btn btn-green">Start Lesson</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE SECTION -->
+<section class="quote-section">
+  <div class="section-container">
+    <blockquote class="big-quote">
+      "Until the lion learns to write, every story will glorify the hunter."
+      <cite>— African Proverb</cite>
+    </blockquote>
+  </div>
+</section>
+
+
+
+{% endblock %}

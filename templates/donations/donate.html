@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Donate — Sauti Ya Taifa{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="donate-hero">
+  <div class="donate-hero-content">
+    <div class="hero-flag-accent">
+      <span class="flag-dot black"></span>
+      <span class="flag-dot red"></span>
+      <span class="flag-dot green"></span>
+    </div>
+    <h1>Fund the <span class="accent-red">Movement</span></h1>
+    <p>Every shilling you give keeps the voice of the nation alive. No amount is too small.</p>
+  </div>
+</section>
+
+<!-- DONATION FORM -->
+<section class="section">
+  <div class="section-container donate-layout">
+
+    <!-- LEFT: FORM -->
+    <div class="donate-form-wrapper">
+      <div class="card donate-card">
+        <h2>Make a <span class="accent-green">Donation</span></h2>
+        <p class="donate-subtext">Anonymous. Secure. M-Pesa powered.</p>
+
+        <form method="POST" id="donate-form">
+          {% csrf_token %}
+
+          <!-- Name -->
+          <div class="form-group">
+            <label>Your Name (optional)</label>
+            <input type="text" name="name" placeholder="e.g. Wanjiru Kamau or leave blank" />
+          </div>
+
+          <!-- Phone -->
+          <div class="form-group">
+            <label>M-Pesa Phone Number <span class="required">*</span></label>
+            <input type="tel" name="phone" placeholder="e.g. 0712345678" required />
+          </div>
+
+          <!-- Amount Presets -->
+          <div class="form-group">
+            <label>Select Amount (KES) <span class="required">*</span></label>
+            <div class="amount-grid">
+              <button type="button" class="amount-btn" onclick="setAmount(50)">KES 50</button>
+              <button type="button" class="amount-btn" onclick="setAmount(100)">KES 100</button>
+              <button type="button" class="amount-btn" onclick="setAmount(250)">KES 250</button>
+              <button type="button" class="amount-btn" onclick="setAmount(500)">KES 500</button>
+              <button type="button" class="amount-btn" onclick="setAmount(1000)">KES 1,000</button>
+              <button type="button" class="amount-btn" onclick="setAmount(2500)">KES 2,500</button>
+            </div>
+          </div>
+
+          <!-- Custom Amount -->
+          <div class="form-group">
+            <label>Or Enter Custom Amount</label>
+            <input type="number" name="amount" id="amount-input" placeholder="e.g. 750" required min="1" />
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="btn btn-red donate-submit" id="submit-btn">
+            💚 Donate via M-Pesa
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- RIGHT: INFO -->
+    <div class="donate-info">
+      <div class="card info-card">
+        <h3>How it works</h3>
+        <ol class="how-it-works">
+          <li><span class="step-num">1</span> Enter your M-Pesa number and amount</li>
+          <li><span class="step-num">2</span> Click Donate — an STK push is sent to your phone</li>
+          <li><span class="step-num">3</span> Enter your M-Pesa PIN to confirm</li>
+          <li><span class="step-num">4</span> Done! Your donation powers the movement</li>
+        </ol>
+      </div>
+
+      <div class="card info-card impact-card">
+        <h3>Your Impact</h3>
+        <ul class="impact-list">
+          <li>💚 <strong>KES 50</strong> — Keeps the lights on for a day</li>
+          <li>✊ <strong>KES 100</strong> — Funds one Sauti School lesson</li>
+          <li>📢 <strong>KES 500</strong> — Powers a week of outreach</li>
+          <li>🌍 <strong>KES 1,000</strong> — Sponsors a community event</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- STATUS MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-box" id="modal-box">
+    <div class="modal-icon" id="modal-icon">⏳</div>
+    <h3 id="modal-title">Processing...</h3>
+    <p id="modal-message">Please check your phone for the M-Pesa prompt and enter your PIN.</p>
+    <button class="btn btn-green" onclick="closeModal()">OK</button>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  function setAmount(val) {
+    document.getElementById('amount-input').value = val;
+    document.querySelectorAll('.amount-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  function closeModal() {
+    document.getElementById('modal-overlay').style.display = 'none';
+  }
+
+  document.getElementById('donate-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Sending STK Push...';
+
+    // Show modal
+    document.getElementById('modal-overlay').style.display = 'flex';
+    document.getElementById('modal-icon').textContent = '⏳';
+    document.getElementById('modal-title').textContent = 'Processing...';
+    document.getElementById('modal-message').textContent = 'Please check your phone for the M-Pesa prompt and enter your PIN.';
+
+    const formData = new FormData(this);
+
+    fetch('/donations/', {
+      method: 'POST',
+      headers: { 'X-CSRFToken': formData.get('csrfmiddlewaretoken') },
+      body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.ResponseCode === '0') {
+        document.getElementById('modal-icon').textContent = '📱';
+        document.getElementById('modal-title').textContent = 'Check Your Phone!';
+        document.getElementById('modal-message').textContent = 'An M-Pesa prompt has been sent to your phone. Enter your PIN to complete the donation.';
+      } else {
+        document.getElementById('modal-icon').textContent = '❌';
+        document.getElementById('modal-title').textContent = 'Something went wrong';
+        document.getElementById('modal-message').textContent = data.ResponseDescription || 'Please try again.';
+      }
+      btn.disabled = false;
+      btn.textContent = '💚 Donate via M-Pesa';
+    })
+    .catch(() => {
+      document.getElementById('modal-icon').textContent = '❌';
+      document.getElementById('modal-title').textContent = 'Error';
+      document.getElementById('modal-message').textContent = 'Could not connect. Please try again.';
+      btn.disabled = false;
+      btn.textContent = '💚 Donate via M-Pesa';
+    });
+  });
+</script>
+{% endblock %}

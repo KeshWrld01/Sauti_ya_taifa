@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Sauti Ya Taifa — The Voice of the Nation{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-flag-accent">
+      <span class="flag-dot black"></span>
+      <span class="flag-dot red"></span>
+      <span class="flag-dot green"></span>
+    </div>
+    <h1 class="hero-title">
+      The Voice of <span class="accent-red">the Nation</span><br/>
+      Starts With <span class="accent-green">You</span>
+    </h1>
+    <p class="hero-subtitle">
+      Sauti Ya Taifa is a civic movement built by Kenyans, for Kenya.
+      We educate, we unite, we rise — together.
+    </p>
+    <div class="hero-buttons">
+      <a href="{% url 'say_names' %}" class="btn btn-red">Say Their Name</a>
+      <a href="{% url 'school' %}" class="btn btn-outline">Start Learning</a>
+    </div>
+  </div>
+  <div class="hero-scroll">&#8595; Scroll</div>
+</section>
+
+<!-- MISSION SECTION -->
+<section class="section mission-section">
+  <div class="section-container">
+    <h2 class="section-title">Why <span class="accent-red">Sauti</span> Ya Taifa?</h2>
+    <p class="section-subtitle">Because silence is not an option. Kenya deserves better — and it starts with an informed, united people.</p>
+    <div class="mission-grid">
+      <div class="card mission-card">
+        <div class="mission-icon">📚</div>
+        <h3>Educate</h3>
+        <p>Know your rights. Understand the constitution. Learn from the great philosophers of resistance.</p>
+        <a href="{% url 'school' %}" class="mission-link accent-green">Go to Sauti School →</a>
+      </div>
+      <div class="card mission-card">
+        <div class="mission-icon">✊</div>
+        <h3>Unite</h3>
+        <p>From Mombasa to Kisumu, Nairobi to Eldoret — we are one people with one voice.</p>
+        <a href="{% url 'say_names' %}" class="mission-link accent-red">Say Their Name →</a>
+      </div>
+      <div class="card mission-card">
+        <div class="mission-icon">💚</div>
+        <h3>Heal</h3>
+        <p>The struggle is heavy. We hold space for grief, rest, and renewal in the Healing House.</p>
+        <a href="{% url 'healing' %}" class="mission-link accent-green">Visit Healing House →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS SECTION -->
+<section class="stats-section">
+  <div class="section-container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <h2 class="stat-number accent-red">47</h2>
+        <p class="stat-label">Counties Represented</p>
+      </div>
+      <div class="stat-item">
+        <h2 class="stat-number accent-green">10K+</h2>
+        <p class="stat-label">Voices Joined</p>
+      </div>
+      <div class="stat-item">
+        <h2 class="stat-number accent-red">3</h2>
+        <p class="stat-label">Sauti School Courses</p>
+      </div>
+      <div class="stat-item">
+        <h2 class="stat-number accent-green">100%</h2>
+        <p class="stat-label">People Powered</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE CTA SECTION -->
+<section class="donate-cta-section">
+  <div class="section-container donate-cta-inner">
+    <div class="donate-cta-text">
+      <h2 style="color: black;">Keep the Voice <span style="color: white;">Alive</span></h2>
+      <p>This movement runs on the generosity of Kenyans like you. Donate via M-Pesa — any amount counts.</p>
+    </div>
+    <a href="{% url 'healing' %}" class="btn btn-red">Donate Now via M-Pesa</a>
+  </div>
+</section>
+
+<!-- JOIN CTA SECTION -->
+<section class="section join-cta-section">
+  <div class="section-container join-cta-inner">
+    <h2 class="section-title">Ready to <span class="accent-green">Say Your Name?</span></h2>
+    <p class="section-subtitle">Join thousands of Kenyans standing up for a better country.</p>
+    <a href="{% url 'say_names' %}" class="btn btn-green">Say Their Names</a>
+  </div>
+</section>
+
+{% endblock %}

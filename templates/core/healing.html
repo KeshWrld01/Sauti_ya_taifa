@@ -1,0 +1,364 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Healing House — Sauti Ya Taifa{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="healing-hero">
+  <div class="healing-hero-overlay"></div>
+  <div class="healing-hero-content">
+    <div class="hero-flag-accent">
+      <span class="flag-dot black"></span>
+      <span class="flag-dot red"></span>
+      <span class="flag-dot green"></span>
+    </div>
+    <h1>The Healing <span class="accent-green">House</span></h1>
+    <p>The struggle is heavy. We hold space for grief, for rest, for renewal. You are not alone. Kenya grieves together — and Kenya will heal together.</p>
+    <div class="hero-buttons">
+      <a href="#donate-families" class="btn btn-red">Donate to Families</a>
+      <a href="#leave-message" class="btn btn-outline">Leave a Message</a>
+    </div>
+  </div>
+  <div class="healing-candles">
+    <span>🕯️</span><span>🕯️</span><span>🕯️</span>
+    <span>🕯️</span><span>🕯️</span><span>🕯️</span>
+  </div>
+</section>
+
+<!-- QUOTES CAROUSEL -->
+<section class="quotes-section">
+  <div class="quotes-container">
+    <div class="quotes-track" id="quotesTrack">
+
+      <div class="quote-slide">
+        <p>"The most courageous act is still to think for yourself. Aloud."</p>
+        <cite>— Wangari Maathai</cite>
+      </div>
+      <div class="quote-slide">
+        <p>"A people without the knowledge of their past history, origin and culture is like a tree without roots."</p>
+        <cite>— Marcus Garvey</cite>
+      </div>
+      <div class="quote-slide">
+        <p>"You have power over your mind, not outside events. Realize this, and you will find strength."</p>
+        <cite>— Marcus Aurelius</cite>
+      </div>
+      <div class="quote-slide">
+        <p>"In the middle of difficulty lies opportunity. Do not be discouraged."</p>
+        <cite>— African Proverb</cite>
+      </div>
+      <div class="quote-slide">
+        <p>"The function of education is to teach one to think intensively and to think critically. Intelligence plus character — that is the goal of true education."</p>
+        <cite>— Martin Luther King Jr.</cite>
+      </div>
+      <div class="quote-slide">
+        <p>"Until the lion learns to write, every story will glorify the hunter."</p>
+        <cite>— African Proverb</cite>
+      </div>
+      <div class="quote-slide">
+        <p>"I am not afraid of storms, for I am learning how to sail my ship."</p>
+        <cite>— Louisa May Alcott</cite>
+      </div>
+      <div class="quote-slide">
+        <p>"He who learns, teaches."</p>
+        <cite>— Ethiopian Proverb</cite>
+      </div>
+
+    </div>
+    <div class="quotes-nav">
+      <button onclick="prevQuote()" class="quote-nav-btn">&#8592;</button>
+      <div class="quote-dots" id="quoteDots"></div>
+      <button onclick="nextQuote()" class="quote-nav-btn">&#8594;</button>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE TO FAMILIES -->
+<section class="section donate-families-section" id="donate-families">
+  <div class="section-container donate-families-layout">
+
+    <div class="families-text">
+      <h2 class="section-title">Support the <span class="accent-red">Families</span></h2>
+      <p>Behind every name on the memorial wall is a family — mothers, fathers, children — left behind. Your donation goes directly to supporting them through this unbearable loss.</p>
+      <ul class="families-impact">
+        <li>🍽️ <strong>KES 500</strong> — Feeds a family for a week</li>
+        <li>📚 <strong>KES 1,000</strong> — School supplies for a child</li>
+        <li>🏥 <strong>KES 2,500</strong> — Medical support for the injured</li>
+        <li>⚖️ <strong>KES 5,000</strong> — Legal aid for the jailed</li>
+      </ul>
+    </div>
+
+    <div class="card families-form-card">
+      <h3>Donate via <span class="accent-green">M-Pesa</span></h3>
+      <p class="donate-subtext">Anonymous. Secure. Every shilling counts.</p>
+
+      <form method="POST" id="healing-donate-form">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="donate" />
+
+        <div class="form-group">
+          <label>M-Pesa Number <span class="required">*</span></label>
+          <input type="tel" name="phone" placeholder="e.g. 0712345678" required />
+        </div>
+
+        <div class="form-group">
+          <label>Amount (KES) <span class="required">*</span></label>
+          <div class="amount-grid">
+            <button type="button" class="amount-btn" onclick="setHealingAmount(500)">KES 500</button>
+            <button type="button" class="amount-btn" onclick="setHealingAmount(1000)">KES 1,000</button>
+            <button type="button" class="amount-btn" onclick="setHealingAmount(2500)">KES 2,500</button>
+            <button type="button" class="amount-btn" onclick="setHealingAmount(5000)">KES 5,000</button>
+          </div>
+          <input type="number" name="amount" id="healing-amount" placeholder="Or enter custom amount" required min="1" style="margin-top: 0.7rem;" />
+        </div>
+
+        <button type="submit" class="btn btn-red donate-submit" id="healing-submit-btn">
+          💚 Send Donation
+        </button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- SOLIDARITY WALL -->
+<section class="section solidarity-section">
+  <div class="section-container">
+    <h2 class="section-title">Wall of <span class="accent-green">Solidarity</span></h2>
+    <p class="section-subtitle">Leave a message. Let the families know Kenya stands with them.</p>
+
+    <div class="solidarity-grid">
+      {% for msg in messages %}
+      <div class="solidarity-card">
+        <p class="solidarity-text">"{{ msg.message }}"</p>
+        <div class="solidarity-footer">
+          <span class="solidarity-name">
+            {% if msg.sender_name %}{{ msg.sender_name }}{% else %}Anonymous{% endif %}
+          </span>
+          <span class="solidarity-county">
+            {% if msg.county %}🌍 {{ msg.county }}{% else %}🌍 Kenya{% endif %}
+          </span>
+        </div>
+      </div>
+      {% empty %}
+      <p style="color:#888; grid-column: 1/-1; text-align:center;">Be the first to leave a message of solidarity.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- LEAVE MESSAGE FORM -->
+<section class="section leave-message-section" id="leave-message">
+  <div class="section-container">
+    <div class="message-form-wrapper">
+      <h2>Leave a <span class="accent-green">Message</span></h2>
+      <p>Anonymous. A few words of solidarity can carry someone through the darkest night.</p>
+
+      <form method="POST" class="message-form">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="message" />
+
+        <div class="form-group">
+          <label>Your Name (optional)</label>
+          <input type="text" name="sender_name" placeholder="Leave blank to stay anonymous" />
+        </div>
+
+        <div class="form-group">
+          <label>Your Message <span class="required">*</span></label>
+          <textarea name="message" rows="4" placeholder="Write a message of hope, solidarity, or remembrance..." required maxlength="300"></textarea>
+          <small>Max 300 characters</small>
+        </div>
+
+        <div class="form-group">
+          <label>County (optional)</label>
+          <select name="county">
+            <option value="">-- Anonymous --</option>
+            <option>Baringo</option>
+            <option>Bomet</option>
+            <option>Bungoma</option>
+            <option>Busia</option>
+            <option>Elgeyo Marakwet</option>
+            <option>Embu</option>
+            <option>Garissa</option>
+            <option>Homa Bay</option>
+            <option>Isiolo</option>
+            <option>Kajiado</option>
+            <option>Kakamega</option>
+            <option>Kericho</option>
+            <option>Kiambu</option>
+            <option>Kilifi</option>
+            <option>Kirinyaga</option>
+            <option>Kisii</option>
+            <option>Kisumu</option>
+            <option>Kitui</option>
+            <option>Kwale</option>
+            <option>Laikipia</option>
+            <option>Lamu</option>
+            <option>Machakos</option>
+            <option>Makueni</option>
+            <option>Mandera</option>
+            <option>Marsabit</option>
+            <option>Meru</option>
+            <option>Migori</option>
+            <option>Mombasa</option>
+            <option>Muranga</option>
+            <option>Nairobi</option>
+            <option>Nakuru</option>
+            <option>Nandi</option>
+            <option>Narok</option>
+            <option>Nyamira</option>
+            <option>Nyandarua</option>
+            <option>Nyeri</option>
+            <option>Samburu</option>
+            <option>Siaya</option>
+            <option>Taita Taveta</option>
+            <option>Tana River</option>
+            <option>Tharaka Nithi</option>
+            <option>Trans Nzoia</option>
+            <option>Turkana</option>
+            <option>Uasin Gishu</option>
+            <option>Vihiga</option>
+            <option>Wajir</option>
+            <option>West Pokot</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-green">🕊️ Post Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- RESOURCES SECTION -->
+<section class="resources-section">
+  <div class="section-container">
+    <h2 class="section-title" style="color:white;">Need <span class="accent-green">Help?</span></h2>
+    <p class="section-subtitle" style="color:#aaa;">You don't have to carry this alone. Reach out.</p>
+    <div class="resources-grid">
+      <div class="resource-card">
+        <div class="resource-icon">🧠</div>
+        <h4>Mental Health Support</h4>
+        <p>Befrienders Kenya</p>
+        <a href="tel:0800723253">0800 723 253</a>
+        <span class="toll-free">Toll Free</span>
+      </div>
+      <div class="resource-card">
+        <div class="resource-icon">⚖️</div>
+        <h4>Legal Aid</h4>
+        <p>Legal Aid Kenya</p>
+        <a href="https://legalaidkenya.org" target="_blank">legalaidkenya.org</a>
+        <span class="toll-free">Free Service</span>
+      </div>
+      <div class="resource-card">
+        <div class="resource-icon">🚨</div>
+        <h4>Human Rights</h4>
+        <p>KNCHR Hotline</p>
+        <a href="tel:0800720627">0800 720 627</a>
+        <span class="toll-free">Toll Free</span>
+      </div>
+      <div class="resource-card">
+        <div class="resource-icon">👮</div>
+        <h4>Police Complaints</h4>
+        <p>IPOA Hotline</p>
+        <a href="tel:0800722203">0800 722 203</a>
+        <span class="toll-free">Toll Free</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONATION MODAL -->
+<div class="modal-overlay" id="healing-modal">
+  <div class="modal-box">
+    <div class="modal-icon" id="healing-modal-icon">⏳</div>
+    <h3 id="healing-modal-title">Processing...</h3>
+    <p id="healing-modal-message">Please check your phone for the M-Pesa prompt.</p>
+    <button class="btn btn-green" onclick="closeHealingModal()">OK</button>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // ── QUOTES CAROUSEL ──
+  let currentQuote = 0;
+  const slides = document.querySelectorAll('.quote-slide');
+  const dotsContainer = document.getElementById('quoteDots');
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement('span');
+    dot.className = 'quote-dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goToQuote(i);
+    dotsContainer.appendChild(dot);
+  });
+
+  function goToQuote(n) {
+    slides[currentQuote].classList.remove('active');
+    document.querySelectorAll('.quote-dot')[currentQuote].classList.remove('active');
+    currentQuote = (n + slides.length) % slides.length;
+    slides[currentQuote].classList.add('active');
+    document.querySelectorAll('.quote-dot')[currentQuote].classList.add('active');
+  }
+
+  function nextQuote() { goToQuote(currentQuote + 1); }
+  function prevQuote() { goToQuote(currentQuote - 1); }
+
+  slides[0].classList.add('active');
+  setInterval(() => nextQuote(), 5000);
+
+  // ── DONATION ──
+  function setHealingAmount(val) {
+    document.getElementById('healing-amount').value = val;
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  function closeHealingModal() {
+    document.getElementById('healing-modal').style.display = 'none';
+  }
+
+  document.getElementById('healing-donate-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const btn = document.getElementById('healing-submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    document.getElementById('healing-modal').style.display = 'flex';
+    document.getElementById('healing-modal-icon').textContent = '⏳';
+    document.getElementById('healing-modal-title').textContent = 'Processing...';
+    document.getElementById('healing-modal-message').textContent = 'Check your phone for the M-Pesa prompt.';
+
+    const formData = new FormData(this);
+
+    fetch('/healing/', {
+      method: 'POST',
+      headers: { 'X-CSRFToken': formData.get('csrfmiddlewaretoken') },
+      body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.ResponseCode === '0') {
+        document.getElementById('healing-modal-icon').textContent = '📱';
+        document.getElementById('healing-modal-title').textContent = 'Check Your Phone!';
+        document.getElementById('healing-modal-message').textContent = 'Enter your M-Pesa PIN to complete the donation to the affected families.';
+      } else {
+        document.getElementById('healing-modal-icon').textContent = '❌';
+        document.getElementById('healing-modal-title').textContent = 'Something went wrong';
+        document.getElementById('healing-modal-message').textContent = data.ResponseDescription || 'Please try again.';
+      }
+      btn.disabled = false;
+      btn.textContent = '💚 Send Donation';
+    })
+    .catch(() => {
+      document.getElementById('healing-modal-icon').textContent = '❌';
+      document.getElementById('healing-modal-title').textContent = 'Error';
+      document.getElementById('healing-modal-message').textContent = 'Could not connect. Please try again.';
+      btn.disabled = false;
+      btn.textContent = '💚 Send Donation';
+    });
+  });
+</script>
+{% endblock %}

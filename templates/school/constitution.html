@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Constitution 101 — Sauti School{% endblock %}
+
+{% block content %}
+
+<section class="lesson-hero green-lesson-hero">
+  <div class="lesson-hero-content">
+    <a href="{% url 'school' %}" class="back-link">← Back to Sauti School</a>
+    <span class="course-tag tag-green">Constitutional Law</span>
+    <h1>Constitution <span class="accent-green">101</span></h1>
+    <p>Your constitution is your most powerful weapon. Learn to use it.</p>
+  </div>
+</section>
+
+<section class="section lesson-section">
+  <div class="lesson-container">
+
+    <div class="lesson-block">
+      <h2>📜 What is the Constitution?</h2>
+      <p>The Constitution of Kenya 2010 is the supreme law of the land. No person, institution, or government can act against it. It was born from the struggle of the Kenyan people and belongs to every one of us. Article 2(1) states clearly: <em>"This Constitution is the supreme law of the Republic and binds all persons and all State organs at both levels of government."</em></p>
+    </div>
+    <div class="lesson-block download-block">
+      <div class="download-inner">
+        <div class="download-icon">📄</div>
+        <div class="download-text">
+          <h3>Download the Constitution of Kenya 2010</h3>
+          <p>Get the full official document — all 264 pages — as a PDF. Read it, share it, know it.</p>
+        </div>
+        <a href="https://www.parliament.go.ke/sites/default/files/2017-05/The_Constitution_of_Kenya_2010.pdf"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn btn-green download-btn">
+          ⬇ Download PDF
+        </a>
+      </div>
+    </div>
+
+    <div class="lesson-block">
+      <h2>🛡️ The Bill of Rights</h2>
+      <p>Chapter 4 of the Constitution contains the Bill of Rights — a declaration of what every Kenyan is entitled to, simply by being human.</p>
+      <div class="rights-grid">
+        <div class="right-card">
+          <h4>Right to Life (Article 26)</h4>
+          <p>Every person has the right to life. The government must protect your life and cannot take it arbitrarily.</p>
+        </div>
+        <div class="right-card">
+          <h4>Right to Equality (Article 27)</h4>
+          <p>Every person is equal before the law. Discrimination based on race, sex, ethnicity, religion, or social status is prohibited.</p>
+        </div>
+        <div class="right-card">
+          <h4>Freedom of Expression (Article 33)</h4>
+          <p>Every person has the right to freedom of expression including the right to seek, receive, and impart information.</p>
+        </div>
+        <div class="right-card">
+          <h4>Right to Assembly (Article 37)</h4>
+          <p>Every person has the right to peaceably assemble, demonstrate, picket, and present petitions to public authorities.</p>
+        </div>
+        <div class="right-card">
+          <h4>Right to Education (Article 53)</h4>
+          <p>Every child has the right to free and compulsory basic education. This is a duty of the state.</p>
+        </div>
+        <div class="right-card">
+          <h4>Right to Health (Article 43)</h4>
+          <p>Every person has the right to the highest attainable standard of health, including reproductive health care.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="lesson-block">
+      <h2>🏛️ How Government is Structured</h2>
+      <p>Kenya operates on a system of separation of powers across three arms of government:</p>
+      <div class="rights-grid">
+        <div class="right-card">
+          <h4>The Executive</h4>
+          <p>Led by the President, Deputy President, and Cabinet. Responsible for implementing laws and running government affairs.</p>
+        </div>
+        <div class="right-card">
+          <h4>The Legislature (Parliament)</h4>
+          <p>Made up of the National Assembly and Senate. Makes laws, approves budgets, and oversees the executive.</p>
+        </div>
+        <div class="right-card">
+          <h4>The Judiciary</h4>
+          <p>Made up of courts including the Supreme Court. Interprets the law and protects constitutional rights.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="lesson-block">
+      <h2>🌍 Devolution</h2>
+      <p>Kenya has 47 counties, each with its own government. Devolution was designed to bring power, resources, and services closer to the people. County governments are led by Governors and County Assemblies. They control a portion of national revenue and are responsible for local services like healthcare, early education, and agriculture.</p>
+      <blockquote class="lesson-quote">
+        "The object of devolution is to give powers of self-governance to the people and enhance their participation in the exercise of the powers of the State."
+        <cite>— Constitution of Kenya 2010, Article 174</cite>
+      </blockquote>
+    </div>
+
+    <div class="lesson-block">
+      <h2>📢 How to Hold Leaders Accountable</h2>
+      <ul class="cannot-list">
+        <li>✅ Vote in every election — national and county</li>
+        <li>✅ Attend public participation forums — they are mandatory by law</li>
+        <li>✅ File petitions to Parliament or your County Assembly</li>
+        <li>✅ Use the Freedom of Information Act to request government data</li>
+        <li>✅ Report corruption to the Ethics and Anti-Corruption Commission (EACC)</li>
+        <li>✅ Use courts to challenge unconstitutional actions</li>
+        <li>✅ Engage civil society and human rights organizations</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}
