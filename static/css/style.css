@@ -1167,3 +1167,239 @@ body { font-family: var(--font-body); color: var(--text); background: var(--whit
 @media (max-width: 768px) {
   .donate-families-layout { grid-template-columns: 1fr; }
 }
+
+
+/* ── PAGE LOAD ── */
+body {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+body.page-loaded {
+  opacity: 1;
+}
+
+/* ── SCROLL ANIMATIONS ── */
+.card,
+.mission-card,
+.school-card,
+.course-card,
+.memorial-card,
+.solidarity-card,
+.resource-card,
+.right-card,
+.lesson-block,
+.stat-item,
+.section-title,
+.section-subtitle,
+.hero-buttons,
+.donate-cta-text,
+.families-text,
+.submit-wrapper,
+.message-form-wrapper {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-in {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* ── HERO ANIMATION ── */
+.hero-title {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: heroFadeUp 1s ease 0.2s forwards;
+}
+.hero-subtitle {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: heroFadeUp 1s ease 0.5s forwards;
+}
+.hero-buttons {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeUp 1s ease 0.8s forwards;
+}
+.hero-flag-accent {
+  opacity: 0;
+  animation: heroFadeUp 1s ease 0.1s forwards;
+}
+@keyframes heroFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── NAVBAR SCROLL EFFECT ── */
+.navbar {
+  transition: all 0.3s ease;
+}
+.navbar.scrolled {
+  padding: 0.6rem 0;
+  background: rgba(10, 10, 10, 0.98);
+  box-shadow: 0 4px 20px rgba(187, 0, 0, 0.3);
+  border-bottom-color: var(--green);
+}
+
+/* ── ACTIVE NAV LINK ── */
+.active-link {
+  color: var(--red) !important;
+  border-bottom: 2px solid var(--red);
+  padding-bottom: 2px;
+}
+
+/* ── BUTTON RIPPLE ── */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  width: 10px;
+  height: 10px;
+  transform: translate(-50%, -50%) scale(0);
+  animation: rippleEffect 0.7s ease-out;
+  pointer-events: none;
+}
+@keyframes rippleEffect {
+  to {
+    transform: translate(-50%, -50%) scale(25);
+    opacity: 0;
+  }
+}
+
+/* ── CTA PULSE ── */
+.btn-red, .btn-green {
+  animation: none;
+}
+.hero-buttons .btn-red,
+.donate-submit,
+.submit-btn {
+  animation: pulse 2.5s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(187, 0, 0, 0.4); }
+  70% { box-shadow: 0 0 0 12px rgba(187, 0, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(187, 0, 0, 0); }
+}
+
+/* ── CARD HOVER GLOW ── */
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(187, 0, 0, 0.15);
+}
+.memorial-card:hover {
+  box-shadow: 0 12px 40px rgba(187, 0, 0, 0.25);
+}
+.solidarity-card:hover {
+  box-shadow: 0 8px 30px rgba(0, 102, 0, 0.2);
+}
+.resource-card:hover {
+  box-shadow: 0 8px 30px rgba(0, 102, 0, 0.2);
+  transform: translateY(-4px);
+}
+
+/* ── CANDLE FLICKER ── */
+.memorial-candle {
+  transition: opacity 0.3s ease;
+}
+.healing-candles span {
+  display: inline-block;
+  animation: candleFlicker 2s infinite alternate;
+}
+.healing-candles span:nth-child(2) { animation-delay: 0.3s; }
+.healing-candles span:nth-child(3) { animation-delay: 0.6s; }
+.healing-candles span:nth-child(4) { animation-delay: 0.2s; }
+.healing-candles span:nth-child(5) { animation-delay: 0.5s; }
+.healing-candles span:nth-child(6) { animation-delay: 0.8s; }
+@keyframes candleFlicker {
+  0%   { transform: scale(1) rotate(-2deg); opacity: 0.8; }
+  50%  { transform: scale(1.1) rotate(2deg); opacity: 1; }
+  100% { transform: scale(0.95) rotate(-1deg); opacity: 0.7; }
+}
+
+/* ── FLAG DOTS PULSE ── */
+.flag-dot {
+  animation: dotPulse 2s infinite alternate;
+}
+.flag-dot.red { animation-delay: 0.3s; }
+.flag-dot.green { animation-delay: 0.6s; }
+@keyframes dotPulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.3); }
+}
+
+/* ── HERO SCROLL BOUNCE ── */
+.hero-scroll {
+  animation: bounce 2s infinite;
+  cursor: pointer;
+}
+
+/* ── STAT NUMBERS ── */
+.stat-number {
+  display: inline-block;
+  transition: transform 0.3s;
+}
+.stat-item:hover .stat-number {
+  transform: scale(1.1);
+}
+
+/* ── IMAGE ZOOM ON HOVER ── */
+.memorial-photo img {
+  transition: transform 0.5s ease;
+}
+.memorial-card:hover .memorial-photo img {
+  transform: scale(1.05);
+}
+
+/* ── QUOTE FADE ── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── NAV LINKS HOVER UNDERLINE ── */
+.nav-links a {
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--red);
+  transition: width 0.3s ease;
+}
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* ── FORM INPUT FOCUS ANIMATION ── */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  transform: scale(1.01);
+  box-shadow: 0 0 0 3px rgba(0, 102, 0, 0.1);
+}
+
+/* ── AMOUNT BTN BOUNCE ── */
+.amount-btn:active {
+  transform: scale(0.95);
+}
+
+/* ── FOOTER LINKS ── */
+.footer-links a {
+  position: relative;
+  transition: color 0.3s, padding-left 0.3s;
+}
+.footer-links a:hover {
+  padding-left: 8px;
+  color: var(--green) !important;
+}
