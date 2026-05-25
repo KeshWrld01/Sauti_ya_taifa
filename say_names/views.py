@@ -27,7 +27,12 @@ def say_names(request):
         return redirect('submission_received')  # 👈 go to thank you page
 
     victims = Victim.objects.filter(approval='approved').order_by('-submitted_at')
-    return render(request, 'say_names/say_names.html', {'victims': victims})
+    return render(request, 'say_names/say_names.html', {
+        'victims': victims,
+        'breadcrumbs': [
+            {'name': 'Say Their Names', 'url': None}
+        ]
+    })
 
 def submission_received(request):
     return render(request, 'say_names/submission_received.html')

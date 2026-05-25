@@ -16,16 +16,20 @@
   <nav class="navbar">
     <div class="nav-container">
       <a href="{% url 'home' %}" class="nav-logo">
-        <img src="{% static 'images/kenya.png' %}" alt="Kenya Flag" class="nav-flag" />
-        <span class="logo-sauti">Sauti</span>
-        <span class="logo-ya">Ya</span>
-        <span class="logo-taifa">Taifa</span>
+        <img src="{% static 'images/kenya_flag.jpeg' %}" alt="Kenya Flag" class="nav-flag" />
+        <div class="nav-logo-text">
+          <div class="nav-logo-name">
+            <span class="logo-sauti">Sauti Ya Taifa</span>
+          </div>
+          <span class="nav-logo-tagline">Voice of the Nation</span>
+        </div>
       </a>
       <ul class="nav-links">
         <li><a href="{% url 'home' %}">Home</a></li>
         <li><a href="{% url 'school' %}">Sauti School</a></li>
         <li><a href="{% url 'healing' %}">Healing House</a></li>
         <li><a href="{% url 'say_names' %}" class="nav-cta">Say Their Names</a></li>
+        <li><a href="{% url 'join' %}" class="nav-cta">Join Us</a></li>
       </ul>
       <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
     </div>

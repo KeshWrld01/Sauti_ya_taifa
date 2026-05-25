@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'say_names',
     'django_extensions',
     'whitenoise',
+    'members',    
 ]
 
 MIDDLEWARE = [

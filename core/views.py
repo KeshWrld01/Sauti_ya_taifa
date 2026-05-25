@@ -49,8 +49,12 @@ def healing(request):
             return JsonResponse(data)
 
     messages = SolidarityMessage.objects.filter(is_approved=True).order_by('-created_at')[:20]
-    return render(request, 'core/healing.html', {'messages': messages})
-
+    return render(request, 'core/healing.html', {
+        'messages': messages,
+        'breadcrumbs': [
+            {'name': 'Healing House', 'url': None}
+        ]
+    })
 
 @csrf_exempt
 def healing_callback(request):

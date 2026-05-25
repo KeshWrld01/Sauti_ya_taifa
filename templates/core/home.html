@@ -35,25 +35,29 @@
   <div class="section-container">
     <h2 class="section-title">Why <span class="accent-red">Sauti</span> Ya Taifa?</h2>
     <p class="section-subtitle">Because silence is not an option. Kenya deserves better — and it starts with an informed, united people.</p>
+    <!-- MISSION GRID -->
     <div class="mission-grid">
-      <div class="card mission-card">
+
+      <a href="{% url 'school' %}" class="card mission-card card-link">
         <div class="mission-icon">📚</div>
         <h3>Educate</h3>
         <p>Know your rights. Understand the constitution. Learn from the great philosophers of resistance.</p>
-        <a href="{% url 'school' %}" class="mission-link accent-green">Go to Sauti School →</a>
-      </div>
-      <div class="card mission-card">
+        <span class="mission-link accent-green">Go to Sauti School →</span>
+      </a>
+
+      <a href="{% url 'join' %}" class="card mission-card card-link">
         <div class="mission-icon">✊</div>
         <h3>Unite</h3>
         <p>From Mombasa to Kisumu, Nairobi to Eldoret — we are one people with one voice.</p>
-        <a href="{% url 'say_names' %}" class="mission-link accent-red">Say Their Name →</a>
-      </div>
-      <div class="card mission-card">
+        <span class="mission-link accent-red">Say Your Name →</span>
+      </a>
+
+      <a href="{% url 'healing' %}" class="card mission-card card-link">
         <div class="mission-icon">💚</div>
         <h3>Heal</h3>
         <p>The struggle is heavy. We hold space for grief, rest, and renewal in the Healing House.</p>
-        <a href="{% url 'healing' %}" class="mission-link accent-green">Visit Healing House →</a>
-      </div>
+        <span class="mission-link accent-green">Visit Healing House →</span>
+      </a>
     </div>
   </div>
 </section>

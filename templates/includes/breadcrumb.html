@@ -1,0 +1,13 @@
+<nav class="breadcrumb">
+  <div class="breadcrumb-container">
+    <a href="{% url 'home' %}">🏠 Home</a>
+    {% for crumb in breadcrumbs %}
+      <span class="breadcrumb-sep">›</span>
+      {% if crumb.url %}
+        <a href="{{ crumb.url }}">{{ crumb.name }}</a>
+      {% else %}
+        <span class="breadcrumb-current">{{ crumb.name }}</span>
+      {% endif %}
+    {% endfor %}
+  </div>
+</nav>

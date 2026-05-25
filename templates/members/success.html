@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Welcome to the Movement — Sauti Ya Taifa{% endblock %}
+
+{% block content %}
+
+<section class="success-section">
+  <div class="success-container">
+
+    <!-- CONFETTI -->
+    <div class="confetti-wrapper" id="confetti"></div>
+
+    <!-- SUCCESS CARD -->
+    <div class="success-card card">
+      <div class="success-flag">
+        <div class="flag-bar black"></div>
+        <div class="flag-bar red"></div>
+        <div class="flag-bar green"></div>
+      </div>
+
+      <div class="success-icon">✊</div>
+      <h1>You Are Now a <span class="accent-green">Member!</span></h1>
+      <p class="success-tagline">Welcome to Sauti Ya Taifa, <strong>{{ member.full_name }}</strong>. Kenya is stronger because you showed up.</p>
+
+      <!-- MEMBER DETAILS -->
+      <div class="member-details">
+        <div class="member-detail-item">
+          <span class="detail-label">Member Name</span>
+          <span class="detail-value">{{ member.full_name }}</span>
+        </div>
+        <div class="member-detail-item">
+          <span class="detail-label">County</span>
+          <span class="detail-value">{{ member.county }}</span>
+        </div>
+        <div class="member-detail-item">
+          <span class="detail-label">M-Pesa Receipt</span>
+          <span class="detail-value accent-green">{{ member.mpesa_receipt_number }}</span>
+        </div>
+        <div class="member-detail-item">
+          <span class="detail-label">Membership Valid Until</span>
+          <span class="detail-value">{{ member.subscription_expires }}</span>
+        </div>
+        <div class="member-detail-item">
+          <span class="detail-label">Status</span>
+          <span class="detail-value"><span class="status-badge">✅ Active</span></span>
+        </div>
+      </div>
+
+      <!-- WHAT NEXT -->
+      <div class="what-next">
+        <h3>What's Next?</h3>
+        <div class="next-grid">
+          <a href="https://chat.whatsapp.com/your-group-link" target="_blank" class="next-card whatsapp-card">
+            <span class="next-icon">💬</span>
+            <h4>Join WhatsApp Group</h4>
+            <p>Connect with members across Kenya</p>
+          </a>
+          <a href="mailto:sauti@sautiyataifa.co.ke" class="next-card email-card">
+            <span class="next-icon">✉️</span>
+            <h4>Email Us</h4>
+            <p>sauti@sautiyataifa.co.ke</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="success-actions">
+        <a href="{% url 'home' %}" class="btn btn-green">🏠 Go to Homepage</a>
+        <a href="{% url 'school' %}" class="btn btn-red">📚 Start Learning</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // Simple confetti effect
+  function createConfetti() {
+    const colors = ['#BB0000', '#006600', '#ffffff', '#ffdd00'];
+    const container = document.getElementById('confetti');
+
+    for (let i = 0; i < 80; i++) {
+      const piece = document.createElement('div');
+      piece.classList.add('confetti-piece');
+      piece.style.left = Math.random() * 100 + 'vw';
+      piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+      piece.style.animationDelay = Math.random() * 3 + 's';
+      piece.style.animationDuration = (Math.random() * 2 + 2) + 's';
+      piece.style.width = (Math.random() * 8 + 6) + 'px';
+      piece.style.height = (Math.random() * 8 + 6) + 'px';
+      container.appendChild(piece);
+    }
+  }
+
+  createConfetti();
+</script>
+{% endblock %}

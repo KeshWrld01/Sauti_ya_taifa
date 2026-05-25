@@ -1,8 +1,8 @@
 /* ── VARIABLES ── */
 :root {
   --black: #0a0a0a;
-  --red: #BB0000;
-  --green: #006600;
+  --red: #800000;        /* maroon */
+  --green: #f5bd02;      /* gold */
   --white: #ffffff;
   --gray: #f5f5f5;
   --text: #1a1a1a;
@@ -1402,4 +1402,335 @@ body.page-loaded {
 .footer-links a:hover {
   padding-left: 8px;
   color: var(--green) !important;
+}
+
+/* ── JOIN HERO ── */
+.join-hero {
+  background: linear-gradient(135deg, #001a00, #0a0a0a);
+  padding: 5rem 2rem;
+  text-align: center;
+  border-bottom: 4px solid var(--green);
+}
+.join-hero-content h1 {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+.join-hero-content p {
+  color: #ccc;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ── MEMBERSHIP LAYOUT ── */
+.membership-layout {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 2rem;
+  align-items: start;
+}
+.join-form-wrapper h2 {
+  font-family: var(--font-head);
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin-bottom: 0.3rem;
+}
+
+/* ── FEES ── */
+.fees-section {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 2px solid #e0e0e0;
+}
+.fees-section h3 {
+  font-family: var(--font-head);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.fees-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.fee-item label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #888;
+  margin-bottom: 0.3rem;
+}
+.fee-input {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  background: #f0f0f0;
+  font-family: var(--font-head);
+  font-weight: 700;
+  color: #333;
+  cursor: not-allowed;
+}
+.fee-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 2px dashed #e0e0e0;
+}
+.fee-total span { font-weight: 600; color: #555; }
+.fee-total strong { font-family: var(--font-head); font-size: 1.5rem; }
+
+/* ── BENEFITS ── */
+.join-benefits { display: flex; flex-direction: column; gap: 1.5rem; }
+.benefits-card h3, .renewal-card h3, .contact-card h3 {
+  font-family: var(--font-head);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.benefits-list { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+.benefits-list li { font-size: 0.9rem; color: #444; }
+.renewal-card p { color: #555; font-size: 0.9rem; line-height: 1.6; }
+.contact-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: var(--green);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ── ERROR BANNER ── */
+.error-banner {
+  background: #fff0f0;
+  border: 2px solid var(--red);
+  border-radius: 6px;
+  padding: 1rem;
+  color: var(--red);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+/* ── MODAL LOADER ── */
+.modal-loader {
+  width: 100%;
+  height: 4px;
+  background: #eee;
+  border-radius: 2px;
+  margin: 1rem 0;
+  overflow: hidden;
+}
+.loader-bar {
+  height: 100%;
+  background: var(--green);
+  border-radius: 2px;
+  animation: loadingBar 2s infinite;
+}
+@keyframes loadingBar {
+  0% { width: 0%; margin-left: 0%; }
+  50% { width: 60%; margin-left: 20%; }
+  100% { width: 0%; margin-left: 100%; }
+}
+
+/* ── SUCCESS PAGE ── */
+.success-section {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #001a00, #0a0a0a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  position: relative;
+}
+.success-container { max-width: 700px; width: 100%; }
+.success-card {
+  text-align: center;
+  padding: 3rem;
+  position: relative;
+  z-index: 2;
+}
+.success-flag {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 60px;
+  margin: 0 auto 1.5rem;
+}
+.success-icon { font-size: 4rem; margin-bottom: 1rem; }
+.success-card h1 {
+  font-family: var(--font-head);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+}
+.success-tagline { color: #666; font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.6; }
+
+/* ── MEMBER DETAILS ── */
+.member-details {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+.member-detail-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+}
+.member-detail-item:last-child { border-bottom: none; }
+.detail-label { color: #888; font-weight: 600; }
+.detail-value { font-weight: 700; color: #333; }
+.status-badge {
+  background: #f0fff0;
+  color: var(--green);
+  padding: 0.2rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+/* ── WHAT NEXT ── */
+.what-next { margin-bottom: 2rem; }
+.what-next h3 {
+  font-family: var(--font-head);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.next-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.next-card {
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-decoration: none;
+  transition: transform 0.3s;
+  display: block;
+}
+.next-card:hover { transform: translateY(-4px); }
+.whatsapp-card { background: #f0fff0; border: 2px solid var(--green); }
+.email-card { background: #fff0f0; border: 2px solid var(--red); }
+.next-icon { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+.next-card h4 {
+  font-family: var(--font-head);
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  color: #333;
+}
+.next-card p { font-size: 0.85rem; color: #666; }
+.success-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── CONFETTI ── */
+.confetti-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+.confetti-piece {
+  position: absolute;
+  top: -10px;
+  border-radius: 2px;
+  animation: confettiFall linear forwards;
+}
+@keyframes confettiFall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+@media (max-width: 768px) {
+  .membership-layout { grid-template-columns: 1fr; }
+  .fees-grid { grid-template-columns: 1fr; }
+  .next-grid { grid-template-columns: 1fr; }
+  .success-card { padding: 1.5rem; }
+}
+/* ── CLICKABLE CARDS ── */
+.card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+.card-link:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(128, 0, 0, 0.2);
+}
+.card-link * {
+  pointer-events: none;
+}
+
+/* ── BREADCRUMB ── */
+.breadcrumb {
+  background: #111;
+  border-bottom: 1px solid #222;
+  padding: 0.7rem 0;
+}
+.breadcrumb-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.breadcrumb a {
+  color: #aaa;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-family: var(--font-head);
+  font-weight: 600;
+  transition: color 0.3s;
+}
+.breadcrumb a:hover { color: var(--green); }
+.breadcrumb-sep { color: #444; font-size: 1rem; }
+.breadcrumb-current {
+  color: var(--green);
+  font-size: 0.85rem;
+  font-family: var(--font-head);
+  font-weight: 700;
+}
+.nav-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+.nav-logo-name {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.nav-logo-tagline {
+  font-size: 0.45rem;
+  color: var(--green);
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 2px;
+  opacity: 0.9;
+  margin-left: 4.3rem;
+}
+.nav-logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
 }

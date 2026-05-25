@@ -4,20 +4,10 @@
 {% block title %}Sauti School — Learn, Know, Rise{% endblock %}
 
 {% block content %}
+{% include 'includes/breadcrumb.html' with breadcrumbs=breadcrumbs %}
 
 <!-- HERO -->
-<section class="school-hero">
-  <div class="school-hero-content">
-    <div class="hero-flag-accent">
-      <span class="flag-dot black"></span>
-      <span class="flag-dot red"></span>
-      <span class="flag-dot green"></span>
-    </div>
-    <h1>Sauti <span class="accent-green">School</span></h1>
-    <p>Knowledge is the first act of resistance. Learn your rights, understand your constitution, and draw strength from the philosophers of change.</p>
-    <a href="#courses" class="btn btn-green">Start Learning</a>
-  </div>
-</section>
+
 
 <!-- COURSES SECTION -->
 <section class="section" id="courses">

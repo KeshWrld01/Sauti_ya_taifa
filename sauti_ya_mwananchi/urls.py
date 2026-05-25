@@ -10,4 +10,5 @@ urlpatterns = [
     path('donations/', include('donations.urls')),
     path('school/', include('school.urls')),
     path('say-names/', include('say_names.urls')),
+    path('join/', include('members.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
